@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games | Under Construction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .construction-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      text-align: center;
+    }
+
+    /* Animated Loading Bar */
+    .loading-bar-warp {
+      width: 300px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--primary-cyan);
+      border-radius: 10px;
+      margin: 20px 0;
+      overflow: hidden;
+      box-shadow: var(--glow);
+    }
+
+    .loading-progress {
+      width: 0%;
+      height: 100%;
+      background: var(--primary-cyan);
+      animation: load-up 3s ease-in-out infinite;
+    }
+
+    @keyframes load-up {
+      0% { width: 0%; }
+      50% { width: 70%; }
+      100% { width: 100%; }
+    }
+
+    .status-text {
+      font-family: 'Nunito', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--primary-cyan);
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body class="games-page"> <header>
+    <h1>Gamer Dashboard</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="drawings.html">Drawings</a>
+    <a href="space.html">Space</a>
+    <a href="science.html">Science</a>
+    <a href="anime.html">Anime</a>
+    <a href="games.html">Games</a>
+  </nav>
+
+  <main class="container">
+    <div class="construction-container">
+      <h2 class="status-text">System Loading...</h2>
+      
+      <div class="loading-bar-warp">
+        <div class="loading-progress"></div>
+      </div>
+
+      <p style="color: var(--text-gray); max-width: 500px;">
+        Leveling up the Games Realm. <br> 
+        <strong>Adhi</strong> is currently gathering CoC loot and Free Fire headshots to populate this page. 
+      </p>
+
+      <div style="margin-top: 30px;">
+        <span class="tag">ESTIMATED COMPLETION: TOMORROW</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Game on! | Made by Adhi</p>
+  </footer>
+
+</body>
+</html>

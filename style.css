@@ -1,0 +1,395 @@
+/* --- 1. GLOBAL VARIABLES & RESET --- */
+:root {
+  --primary-cyan: #00ffe1;
+  --bg-black: #050505;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --nav-bg: rgba(17, 17, 17, 0.95);
+  --text-white: #ffffff;
+  --text-gray: #aaaaaa;
+  --transition: all 0.3s ease;
+  --glow: 0 0 15px rgba(0, 255, 225, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-black);
+  color: var(--text-white);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background 0.5s ease;
+}
+
+/* --- 2. DYNAMIC THEMES --- */
+
+/* SPACE PAGE */
+body.space-page {
+  --primary-cyan: #bc13fe; 
+  --glow: 0 0 20px rgba(188, 19, 254, 0.6);
+  background: radial-gradient(circle at center, #110022 0%, #050505 100%);
+}
+
+/* SCIENCE PAGE */
+body.science-page {
+  --primary-cyan: #0077ff;
+  --glow: 0 0 20px rgba(0, 119, 255, 0.5);
+  background: linear-gradient(135deg, #000814 0%, #050505 100%);
+}
+
+/* ANIME PAGE */
+body.anime-page {
+  --primary-cyan: #ff4d00;
+  --glow: 0 0 20px rgba(255, 77, 0, 0.5);
+  background: linear-gradient(180deg, #0a0500 0%, #050505 100%);
+}
+
+/* DRAWINGS PAGE */
+body.drawings-page {
+  --primary-cyan: #ffffff; 
+  --glow: 0 0 15px rgba(255, 255, 255, 0.3);
+  background-color: #0a0a0a;
+}
+
+/* --- 3. HEADER & NAVIGATION --- */
+header {
+  background-color: var(--nav-bg);
+  padding: 2.5rem 1rem;
+  text-align: center;
+  border-bottom: 2px solid var(--primary-cyan);
+  box-shadow: var(--glow);
+}
+
+header h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 3rem;
+  color: var(--primary-cyan);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: var(--glow);
+}
+
+nav {
+  background-color: var(--nav-bg);
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1.2rem;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav a {
+  color: var(--text-white);
+  text-decoration: none;
+  font-weight: bold;
+  transition: var(--transition);
+  padding: 5px 12px;
+}
+
+nav a:hover {
+  color: var(--primary-cyan);
+  text-shadow: var(--glow);
+}
+
+/* --- 4. LAYOUT & GRID --- */
+.container {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+  transition: var(--transition);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.btn-primary {
+  display: inline-block;
+  color: var(--primary-cyan);
+  border: 2px solid var(--primary-cyan);
+  padding: 0.8rem 1.8rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: var(--transition);
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background: var(--primary-cyan);
+  color: #000;
+  box-shadow: var(--glow);
+}
+
+/* --- 5. DRAWINGS GALLERY (Smooth & Clean) --- */
+.drawings-page .gallery-item {
+  background: #151515;
+  border: 1px solid #333;
+  padding: 12px;
+  border-radius: 15px;
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.drawings-page .gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.drawings-page .gallery-item:hover {
+  border-color: #ffffff;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+}
+
+.drawings-page .gallery-item p {
+  color: #888;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* --- 6. LIGHTBOX --- */
+#lightbox {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#lightbox img {
+  max-width: 85%;
+  max-height: 85%;
+  border: 2px solid var(--primary-cyan);
+  border-radius: 10px;
+}
+
+/* --- 7. SPACE PAGE ANIMATIONS (Fixed Motion) --- */
+.floating-item {
+  position: fixed !important;
+  z-index: -1;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@keyframes screen-wander {
+  0%   { top: 15%; left: 10%; transform: rotate(0deg); }
+  25%  { top: 40%; left: 70%; transform: rotate(15deg); }
+  50%  { top: 75%; left: 30%; transform: rotate(-10deg); }
+  75%  { top: 20%; left: 60%; transform: rotate(5deg); }
+  100% { top: 15%; left: 10%; transform: rotate(0deg); }
+}
+
+@keyframes rocket-flight {
+  0%   { bottom: -15%; left: -15%; transform: rotate(45deg); }
+  100% { bottom: 115%; left: 115%; transform: rotate(45deg); }
+}
+
+/* Restoring motions to all space objects */
+.planet-1 { width: 150px; animation: screen-wander 60s linear infinite !important; }
+.astronaut-1 { width: 80px; animation: screen-wander 45s ease-in-out infinite reverse !important; }
+.asteroid { width: 40px; animation: screen-wander 35s linear infinite !important; animation-delay: -10s; }
+.rocket-1 { width: 100px; animation: rocket-flight 25s linear infinite !important; }
+
+/* --- 8. MISC (Tags & Glitch) --- */
+.tag {
+  background: rgba(255, 77, 0, 0.1);
+  border: 1px solid var(--primary-cyan);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.science-page .btn-primary:hover {
+  animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+footer {
+  margin-top: 5rem;
+  padding: 3rem 1rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* --- SELECTION HIGHLIGHT --- */
+.selected-box {
+  border-color: var(--primary-cyan) !important;
+  box-shadow: var(--glow), inset 0 0 10px rgba(255, 255, 255, 0.1) !important;
+  transform: scale(1.01); /* Subtle "pop" when selected */
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Make sure sections have a transition so the highlight is smooth */
+section {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* --- 🧪 PARADOX PAGE (NEON & SUBTLE IDLE GLITCH) --- */
+
+body.paradox-page {
+  --primary-cyan: #39ff14; 
+  --glow: 0 0 15px rgba(57, 255, 20, 0.8);
+  background-color: #020502;
+  overflow-x: hidden;
+}
+
+/* 1. THE IDLE BACKGROUND */
+.glitch-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #000;
+}
+
+/* Suble Scan-lines (The "TV" texture) */
+.glitch-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), 
+  linear-gradient(
+    90deg, 
+    rgba(255, 0, 0, 0.03), 
+    rgba(0, 255, 0, 0.01), 
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+}
+
+/* The Subtle Tear (Jumps only occasionally) */
+/* --- 🧪 ALWAYS-ACTIVE IDLE GLITCH --- */
+
+.glitch-bg {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Creating the constant 'static' lines */
+.glitch-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(57, 255, 20, 0.05) 0px,
+    rgba(57, 255, 20, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* The jumping 'tear' effect that is always active */
+.glitch-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(57, 255, 20, 0.02);
+  /* This creates the jagged, snapping movement you want */
+  animation: idle-snapping 4s steps(1) infinite;
+  opacity: 0.6;
+}
+
+/* Hard snaps and horizontal shifts */
+@keyframes idle-snapping {
+  0%, 10% { transform: translate(0); clip-path: inset(0 0 0 0); }
+  11% { transform: translate(-5px, 2px); clip-path: inset(10% 0 85% 0); }
+  13% { transform: translate(5px, -2px); clip-path: inset(80% 0 5% 0); }
+  15% { transform: translate(0); clip-path: inset(0 0 0 0); }
+  45% { transform: translate(2px, 2px); clip-path: inset(40% 0 40% 0); }
+  46% { transform: translate(0); }
+  88% { transform: translate(-8px, -1px); clip-path: inset(20% 0 75% 0); }
+  90% { transform: translate(0); }
+}
+
+/* SYSTEM FAILURE (Wrong Answer) - Keep this violent */
+.system-failure .glitch-bg {
+  background: #200 !important;
+}
+
+.system-failure .glitch-bg::after {
+  background: rgba(255, 0, 0, 0.2);
+  /* Speeds up to total chaos when failing */
+  animation: idle-snapping 0.1s infinite;
+  opacity: 1;
+}
+
+/* 2. WRONG ANSWER (The Meltdown - Kept Violent) */
+.system-failure {
+  animation: shake 0.15s infinite;
+}
+
+.system-failure .glitch-bg {
+  background: #200 !important;
+}
+
+.system-failure .glitch-bg::after {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: -15px 0 red, 15px 0 blue;
+  /* Meltdown uses a very fast animation (0.1s) */
+  animation: meltdown-glitch 0.1s infinite;
+}
+
+@keyframes meltdown-glitch {
+  0% { clip-path: inset(10% 0 30% 0); transform: translateX(-15px); }
+  50% { clip-path: inset(50% 0 10% 0); transform: translateX(15px); }
+  100% { clip-path: inset(20% 0 60% 0); transform: translateX(-15px); }
+}
+
+@keyframes shake {
+  0% { transform: translate(3px, 3px); }
+  50% { transform: translate(-3px, -3px); }
+  100% { transform: translate(3px, 3px); }
+}
+
+/* Content logic - remains the same */
+.paradox .more { display: none; margin-top: 1rem; color: var(--text-gray); border-top: 1px solid rgba(57, 255, 20, 0.2); padding-top: 10px; }
+.paradox.open .more { display: block; }
+.read-more { display: inline-block; margin-top: 1rem; color: var(--primary-cyan); cursor: pointer; font-weight: bold; }

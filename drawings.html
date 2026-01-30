@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Drawings | My_Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<script>
+  // Select all sections (boxes)
+  const boxes = document.querySelectorAll('section, .fav-box, .gallery-item');
+
+  boxes.forEach(box => {
+    box.addEventListener('click', function() {
+      // 1. Remove highlight from all other boxes
+      boxes.forEach(b => b.classList.remove('selected-box'));
+      
+      // 2. Add highlight to the clicked box
+      this.classList.add('selected-box');
+    });
+  });
+</script>
+<body class="drawings-page">
+
+  <header>
+    <h1>My Drawings ✍️🔥</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="drawings.html">Drawings</a>
+    <a href="space.html">Space</a>
+    <a href="science.html">Science</a>
+    <a href="anime.html">Anime</a>
+    <a href="games.html">Games</a>
+  </nav>
+
+  <main class="container">
+    <section>
+      <p>Here's a little window into my Drawings. I've drawn a lot since childhood, and these are the ones I really like. More on the way...</p>
+    </section>
+
+    <div class="grid">
+      <div class="gallery-item"><img src="images/drawing1.png" alt="Boat"><p>Boat</p></div>
+      <div class="gallery-item"><img src="images/drawing2.png" alt="Yacht"><p>Yacht</p></div>
+      <div class="gallery-item"><img src="images/drawing3.png" alt="Sunset"><p>Sunset</p></div>
+      <div class="gallery-item"><img src="images/drawing4.png" alt="Small Village"><p>Small Village</p></div>
+      <div class="gallery-item"><img src="images/drawing5.png" alt="Field"><p>Field</p></div>
+      <div class="gallery-item"><img src="images/drawing6.png" alt="Luffy vs Doflamingo"><p>Luffy vs Doflamingo</p></div>
+      <div class="gallery-item"><img src="images/drawing7.png" alt="Luffy vs Kaido"><p>Luffy vs Kaido</p></div>
+      <div class="gallery-item"><img src="images/drawing8.png" alt="Zoro"><p>Zoro</p></div>
+      <div class="gallery-item"><img src="images/drawing9.png" alt="Yamal X Raphinha"><p>Yamal X Raphinha</p></div>
+      <div class="gallery-item"><img src="images/drawing10.png" alt="Luffy-Gear 2"><p>Luffy-Gear 2</p></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="index.html" class="btn-primary">Back to Home</a>
+    </div>
+  </main>
+
+  <div id="lightbox">
+    <span id="close" style="position: absolute; top: 20px; right: 40px; color: white; font-size: 3rem; cursor: pointer;">&times;</span>
+    <img id="lightbox-img" src="" alt="Zoomed Drawing">
+  </div>
+
+  <footer>
+    <p>Made with ❤️ by Adhi</p>
+  </footer>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('close');
+
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>

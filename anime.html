@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Realm | My_Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Favorite Highlight Box */
+    .fav-box {
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                  url('images/collage.jpg');
+      background-size: cover;
+      background-position: center;
+      border: 2px solid var(--primary-cyan);
+      border-radius: 15px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin-bottom: 2rem;
+    }
+
+    .fav-img {
+      width: 110px;
+      border-radius: 8px;
+      border: 2px solid var(--primary-cyan);
+      box-shadow: var(--glow);
+    }
+
+    /* Sorted Table Styles */
+    .scroll-table {
+      height: 500px;
+      overflow-y: auto;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(0,0,0,0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #1a1a1a;
+      color: var(--primary-cyan);
+      padding: 15px;
+      text-align: left;
+      z-index: 10;
+      border-bottom: 2px solid var(--primary-cyan);
+    }
+
+    td {
+      padding: 12px 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Quote Wheel */
+    .wheel-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .wheel-wrapper {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: 40px 0;
+    }
+
+    .pointer {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 30px solid var(--primary-cyan);
+      z-index: 30;
+      filter: drop-shadow(0 0 5px var(--primary-cyan));
+    }
+
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 10px solid #222;
+      background: conic-gradient(
+        #ff4d00 0deg 60deg, #111 60deg 120deg,
+        #ff4d00 120deg 180deg, #111 180deg 240deg,
+        #ff4d00 240deg 300deg, #111 300deg 360deg
+      );
+      transition: transform 4s cubic-bezier(0.1, 0, 0, 1);
+      box-shadow: var(--glow);
+    }
+
+    .spin-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 75px;
+      height: 75px;
+      background: #fff;
+      color: #000;
+      border-radius: 50%;
+      border: 4px solid var(--primary-cyan);
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 35;
+    }
+
+    .quote-display {
+      width: 100%;
+      max-width: 700px;
+      min-height: 110px;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 5px solid var(--primary-cyan);
+      padding: 25px;
+      text-align: center;
+      font-style: italic;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+  </style>
+
+  <!-- FIXED HIGHLIGHT SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const boxes = document.querySelectorAll('section, .fav-box, .gallery-item');
+
+      boxes.forEach(box => {
+        box.addEventListener('click', function (e) {
+          e.stopPropagation();
+          boxes.forEach(b => b.classList.remove('selected-box'));
+          this.classList.add('selected-box');
+        });
+      });
+    });
+  </script>
+</head>
+
+<body class="anime-page">
+
+  <header>
+    <h1>Anime Realm</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="drawings.html">Drawings</a>
+    <a href="space.html">Space</a>
+    <a href="science.html">Science</a>
+    <a href="anime.html">Anime</a>
+    <a href="games.html">Games</a>
+  </nav>
+
+  <main class="container">
+
+    <div class="fav-box">
+      <img src="images/onepiece.png" class="fav-img" alt="One Piece">
+      <div>
+        <h2 style="color: var(--primary-cyan); margin: 0;">Peak: One Piece</h2>
+        <p>
+          "Inherited Will, The Destiny of the Age, and The Dreams of the People.
+          As long as people continue to pursue the meaning of Freedom, these things will never cease to be!"
+        </p>
+        <a href="#quote-section" class="btn-primary" style="font-size: 0.8rem;">To the Quote Wheel</a>
+      </div>
+    </div>
+
+    <section>
+      <h3>Completed Archives (Sorted by Rating)</h3>
+      <div class="scroll-table">
+        <table id="anime-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Score</th>
+              <th>Format</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="quote-section" class="wheel-container">
+      <h3>The Pirate's Wisdom Wheel</h3>
+      <div class="wheel-wrapper">
+        <div class="pointer"></div>
+        <div id="wheel" class="wheel"></div>
+        <button class="spin-btn" onclick="spinWheel()">SPIN</button>
+      </div>
+      <div id="quote-text" class="quote-display">
+        "Click the wheel to unveil a quote from the legends..."
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>We're just beginning to find our way. | Made by Adhi</p>
+  </footer>
+
+  <script>
+    const animeData = [
+  {t: "One Piece", s: "10", tp: "TV"},
+  {t: "A Silent Voice", s: "10", tp: "Movie"},
+  {t: "Death Note", s: "10", tp: "TV"},
+  {t: "Mob Psycho 100 II", s: "10", tp: "TV"},
+  {t: "Mushoku Tensei: Jobless Reincarnation", s: "10", tp: "TV"},
+  {t: "Mushoku Tensei: Part 2", s: "10", tp: "TV"},
+  {t: "Spy x Family (S1, Part 2, S3)", s: "10", tp: "TV"},
+  {t: "Vinland Saga (S1 & S2)", s: "10", tp: "TV"},
+  {t: "Your Name.", s: "10", tp: "Movie"},
+  {t: "Stand By Me Doraemon", s: "10", tp: "Movie"},
+  {t: "Pokémon", s: "10", tp: "TV"},
+  {t: "One-Punch Man S1", s: "10", tp: "TV"},
+  {t: "Hell's Paradise", s: "10", tp: "TV"},
+  {t: "Attack on Titan: Final Season", s: "10", tp: "TV"},
+  {t: "The Apothecary Diaries Season 2", s: "10", tp: "TV"},
+
+  {t: "Attack on Titan (S1-S3, Final P2)", s: "9", tp: "TV"},
+  {t: "Blue Box", s: "9", tp: "TV"},
+  {t: "The Apothecary Diaries", s: "9", tp: "TV"},
+  {t: "Kaguya-sama: Love is War", s: "9", tp: "TV"},
+  {t: "The Dangers in My Heart (S1 & S2)", s: "9", tp: "TV"},
+  {t: "Mob Psycho 100 (I & III)", s: "9", tp: "TV"},
+  {t: "Slime (S1, S2, S3)", s: "9", tp: "TV"},
+  {t: "The Fragrant Flower Blooms with Dignity", s: "9", tp: "TV"},
+  {t: "Classroom of the Elite II", s: "9", tp: "TV"},
+  {t: "Demon Slayer (S1, Mugen Train, Swordsmith)", s: "9", tp: "TV"},
+  {t: "Weathering with You", s: "9", tp: "Movie"},
+  {t: "Spirited Away", s: "9", tp: "Movie"},
+  {t: "Stand By Me Doraemon 2", s: "9", tp: "Movie"},
+
+  {t: "Jujutsu Kaisen (S1 & S2)", s: "8", tp: "TV"},
+  {t: "Alya Sometimes Hides Her Feelings in Russian", s: "8", tp: "TV"},
+  {t: "Campfire Cooking (S1)", s: "8", tp: "TV"},
+  {t: "Oshi no Ko", s: "8", tp: "TV"},
+  {t: "Sakamoto Days (Part 1 & 2)", s: "8", tp: "TV"},
+  {t: "My Love Story with Yamada-kun at Lv999", s: "8", tp: "TV"},
+  {t: "My Dress-Up Darling", s: "8", tp: "TV"},
+  {t: "The Angel Next Door Spoils Me Rotten", s: "8", tp: "TV"},
+  {t: "More than a Married Couple", s: "8", tp: "TV"},
+
+  {t: "Lookism", s: "7", tp: "ONA"},
+  {t: "Bubble", s: "7", tp: "ONA"},
+  {t: "Campfire Cooking S2", s: "7", tp: "TV"},
+  {t: "My Happy Marriage", s: "7", tp: "TV"},
+  {t: "Rent-a-Girlfriend S1", s: "7", tp: "TV"},
+  {t: "Tonikawa", s: "7", tp: "TV"},
+  {t: "The Slime Diaries", s: "7", tp: "TV"},
+  {t: "I Got a Cheat Skill", s: "7", tp: "TV"},
+
+  {t: "Rent-a-Girlfriend Season 2", s: "6", tp: "TV"},
+  {t: "Rent-a-Girlfriend Season 3", s: "5", tp: "TV"},
+  {t: "One-Punch Man Season 3", s: "5", tp: "TV"}
+];
+
+
+    const tableBody = document.querySelector('#anime-table tbody');
+    animeData.forEach(item => {
+      tableBody.innerHTML +=
+        `<tr><td>${item.t}</td><td style="color:var(--primary-cyan); font-weight:bold;">★ ${item.s}</td><td>${item.tp}</td></tr>`;
+    });
+
+    const quotes = [
+      "As long as I live I have infinite chances. - Luffy",
+      "A man dies when he is forgotten. - Dr. Hiriluk",
+      "Justice will prevail? Whoever wins becomes justice. - Doflamingo"
+    ];
+
+    let currentRotation = 0;
+    function spinWheel() {
+      const wheel = document.getElementById('wheel');
+      const text = document.getElementById('quote-text');
+      currentRotation += Math.floor(Math.random() * 360) + 2520;
+      wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+      setTimeout(() => {
+        text.innerHTML = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
+      }, 4000);
+    }
+  </script>
+
+</body>
+</html>

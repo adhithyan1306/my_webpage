@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me | My_Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const boxes = document.querySelectorAll('section, .fav-box, .gallery-item');
+      boxes.forEach(box => {
+        box.addEventListener('click', function (e) {
+          e.stopPropagation();
+          boxes.forEach(b => b.classList.remove('selected-box'));
+          this.classList.add('selected-box');
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <h1>About Me</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="drawings.html">Drawings</a>
+    <a href="space.html">Space</a>
+    <a href="science.html">Science</a>
+    <a href="anime.html">Anime</a>
+    <a href="games.html">Games</a>
+  </nav>
+
+  <main class="container">
+    <section>
+      <h2>Hey there! I'm Adhithyan</h2>
+      <p>People also call me Adhi — I'm curious about exploring everything from galaxies to the atoms.</p>
+      <p>I'm currently studying Electronics and Biomedical Engineering at ASIET, Kalady; but I also spend a lot of time sketching, watching anime and various series, understanding paradoxes and science, diving into tech, and playing games.</p>
+      <p>I made this site just for fun — to share my ideas, my chaos, my creativity, and everything in between.</p>
+      <p>If you're here, you're already awesome.</p>
+    </section>
+
+    <section style="text-align: center; border-style: dashed; opacity: 0.8;">
+      <h3>Current Focus</h3>
+      <p>Bridging the gap between human biology and futuristic tech.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ by Adhi</p>
+  </footer>
+
+</body>
+</html>

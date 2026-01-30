@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My_Website | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FIXED HIGHLIGHT SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Select all sections (boxes)
+      const boxes = document.querySelectorAll('section, .fav-box, .gallery-item');
+
+      boxes.forEach(box => {
+        box.addEventListener('click', function (e) {
+          e.stopPropagation();
+
+          // Remove highlight from all other boxes
+          boxes.forEach(b => b.classList.remove('selected-box'));
+
+          // Highlight the clicked box
+          this.classList.add('selected-box');
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <h1>My_Website</h1>
+  </header>
+
+  <nav>
+    <a href="drawings.html">Drawings</a>
+    <a href="space.html">Space</a>
+    <a href="science.html">Science</a>
+    <a href="anime.html">Anime</a>
+    <a href="games.html">Games</a>
+  </nav>
+
+  <main class="container">
+    <section>
+      <h2>Hello and Welcome!</h2>
+      <p>
+        Thanks for visiting my website (or webpage) — Where i hope to post a creative, slightly chaotic mix of everything I love;
+        space, science, anime, games, tech, drawings, and probably some paradoxes that will fry your brain (like literally).
+      </p>
+      <p>
+        This site is like my personal notebook, sketchbook, science diary, whatever you call it all rolled into one. 
+        I'm just here sharing what excites me, confuses me, or blows my mind.
+      </p>
+      
+      <a href="about.html" class="btn-primary">More About Me (Nothing much)</a>
+    </section>
+
+    <div class="grid">
+      <section>
+        <h3>Latest Art</h3>
+        <p>I recently added some One Piece sketches to the gallery.Will keep on updating.</p>
+        <a href="drawings.html" style="color: var(--primary-cyan); text-decoration: none; font-weight: bold;">View Gallery →</a>
+      </section>
+      
+      <section>
+        <h3>Space & Logic</h3>
+        <p>Exploring the mysteries of the cosmos and brain-frying paradoxes that i learned and found interesting</p>
+        <a href="space.html" style="color: var(--primary-cyan); text-decoration: none; font-weight: bold;">Explore Space →</a>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a href="https://www.instagram.com/adhithyan._.saji" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/in/adhithyan-saji-1a179932a" target="_blank">LinkedIn</a>
+      <a href="https://github.com/adhithyan1306" target="_blank">GitHub</a>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Made with ❤️ by Adhi</p>
+  </footer>
+
+</body>
+</html>

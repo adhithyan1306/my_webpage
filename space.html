@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cosmos | My_Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FIXED HIGHLIGHT SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const boxes = document.querySelectorAll('section, .fav-box, .gallery-item');
+
+      boxes.forEach(box => {
+        box.addEventListener('click', function (e) {
+          e.stopPropagation();
+          boxes.forEach(b => b.classList.remove('selected-box'));
+          this.classList.add('selected-box');
+        });
+      });
+    });
+  </script>
+</head>
+
+<body class="space-page">
+
+  <!-- Floating Space Objects -->
+  <img src="images/planet.png" class="floating-item planet-1" alt="Planet">
+  <img src="images/astronaut.png" class="floating-item astronaut-1" alt="Astronaut">
+  <img src="images/asteroid.png" class="floating-item asteroid" alt="Asteroid">
+  <img src="images/rocket.png" class="floating-item rocket-1" alt="Rocket">
+
+  <header>
+    <h1>The Cosmos</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="drawings.html">Drawings</a>
+    <a href="space.html">Space</a>
+    <a href="science.html">Science</a>
+    <a href="anime.html">Anime</a>
+    <a href="games.html">Games</a>
+  </nav>
+
+  <main class="container">
+    <section>
+      <h2>The Great Unknown</h2>
+      <p>
+        Space is the ultimate frontier. It is vast, silent, and governed by laws that
+        challenge our very understanding of existence. Here, time stretches, stars
+        collapse, and light itself can be trapped forever.
+      </p>
+    </section>
+
+    <div class="grid">
+      <section>
+        <h3>Black Holes</h3>
+        <p>
+          Regions of spacetime where gravity is so strong that nothing—not even
+          light—can escape. They are the ultimate "drain" of the universe.
+        </p>
+      </section>
+
+      <section>
+        <h3>Neutron Stars</h3>
+        <p>
+          The remnants of massive stars. They are so dense that a single teaspoon
+          of neutron star material would weigh about a billion tons.
+        </p>
+      </section>
+    </div>
+
+    <section style="border: 2px solid var(--primary-cyan); background: rgba(188, 19, 254, 0.1);">
+      <h3>The Universal Limit: c</h3>
+      <p>
+        The speed of light (299,792,458 m/s) isn't just a speed; it's the speed of
+        <strong>causality</strong>. As you approach it, time for you slows down
+        relative to the rest of the universe (Time Dilation).
+      </p>
+      <p style="margin-top: 10px; font-style: italic; color: var(--text-gray);">
+        "If you travel at the speed of light, you could reach the moon in 1.3 seconds,
+        but you'd need infinite energy to get there."
+      </p>
+    </section>
+
+    <div class="grid">
+      <section>
+        <h3>Dark Matter & Energy</h3>
+        <p>
+          Everything we see—planets, stars, galaxies—makes up only about 5% of
+          the universe. The rest is Dark Matter and Dark Energy.
+        </p>
+      </section>
+
+      <section>
+        <h3>Supernovae</h3>
+        <p>
+          The violent death of a star. In its final moments, a supernova can
+          outshine an entire galaxy and create the elements that make up our bodies.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>We are made of stardust. | Made by Adhi</p>
+  </footer>
+
+</body>
+</html>

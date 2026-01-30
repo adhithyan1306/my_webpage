@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paradox Archives | My_Website</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Selection Highlight Class */
+    .selected-box {
+      border-color: var(--primary-cyan) !important;
+      box-shadow: var(--glow), inset 0 0 15px rgba(255, 255, 255, 0.1) !important;
+      transform: translateY(-5px) scale(1.01);
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+  </style>
+</head>
+
+<body class="paradox-page">
+  
+  <div class="glitch-bg"></div>
+
+  <header>
+    <h1>Paradox Archives</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="drawings.html">Drawings</a>
+    <a href="space.html">Space</a>
+    <a href="science.html">Science</a>
+    <a href="anime.html">Anime</a>
+    <a href="games.html">Games</a>
+  </nav>
+
+  <main class="container">
+
+    <section style="text-align:center; opacity:0.8;">
+      <p><em>Every truth has a flaw. Solve all paradoxes to unlock the evaluation.</em></p>
+    </section>
+
+    <div class="grid">
+
+      <section class="paradox" data-opened="false">
+        <h3>⏳ The Grandfather Paradox</h3>
+        <p><strong>Changing the past erases the cause of the change itself.</strong></p>
+
+        <div class="more">
+          <p>
+            If you go back in time and prevent your grandfather from meeting your grandmother,
+            you are never born. But if you were never born, you could never have traveled back.
+          </p>
+          <p>This creates a causal loop with no consistent outcome.</p>
+        </div>
+        <span class="read-more">Read more →</span>
+      </section>
+
+      <section class="paradox" data-opened="false">
+        <h3>🔄 The Bootstrap Paradox</h3>
+        <p><strong>Information exists without ever being created.</strong></p>
+
+        <div class="more">
+          <p>
+            A time traveler gives Shakespeare a copy of Hamlet.
+            The play is copied, published, and centuries later bought again by the traveler.
+          </p>
+          <p>Who wrote Hamlet originally? The information has no origin.</p>
+        </div>
+        <span class="read-more">Read more →</span>
+      </section>
+
+      <section class="paradox" data-opened="false">
+        <h3>🚢 The Ship of Theseus</h3>
+        <p><strong>If everything changes, what stays the same?</strong></p>
+
+        <div class="more">
+          <p>
+            Every plank of Theseus’s ship is replaced over time. Eventually, no original material remains.
+          </p>
+          <p>Your body replaces its cells every few years. Are you still the same "you"?</p>
+        </div>
+        <span class="read-more">Read more →</span>
+      </section>
+
+      <section class="paradox" data-opened="false">
+        <h3>🤥 The Pinocchio Paradox</h3>
+        <p><strong>A statement that cannot be true or false.</strong></p>
+
+        <div class="more">
+          <p>
+            Pinocchio says: “My nose grows longer now.”
+            If it’s true, it shouldn't grow. If it's false, it should grow, making it true.
+          </p>
+        </div>
+        <span class="read-more">Read more →</span>
+      </section>
+
+      <section class="paradox" data-opened="false">
+        <h3>🐈 Schrödinger’s Cat</h3>
+        <p><strong>Reality does not choose a state until observed.</strong></p>
+        
+        <div class="more">
+          <p>
+            Until measured, a quantum system exists in a superposition of outcomes.
+            The cat is mathematically alive and dead at the same time.
+          </p>
+        </div>
+        <span class="read-more">Read more →</span>
+      </section>
+
+      <section class="paradox" data-opened="false">
+        <h3>🏨 Hilbert’s Hotel</h3>
+        <p><strong>A hotel that seems limitless… until it isn’t.</strong></p>
+
+        <div class="more">
+          <p>
+            A hotel with infinitely many rooms can accept more guests by shifting everyone up a room (n → n+1).
+          </p>
+          <p><strong>Some infinities are bigger than others.</strong></p>
+          <a href="https://www.youtube.com/watch?v=OxGsU8oIWjY" target="_blank" class="btn-primary" style="font-size:0.75rem;">Watch Veritasium</a>
+        </div>
+        <span class="read-more">Read more →</span>
+      </section>
+
+    </div>
+
+    <section id="quiz-section" style="display:none; text-align:center;">
+      <h3 style="color: #ff0000;">⚠️ Logical Evaluation</h3>
+      <p>Imagine a family has two children. One of them is known to be a boy.</p>
+      <p><strong>What is the probability the other child is also a boy?</strong></p>
+
+      <div style="margin-top:1.5rem;">
+        <button class="btn-primary quiz-btn" data-answer="1/2">1 / 2</button>
+        <button class="btn-primary quiz-btn" data-answer="1/3">1 / 3</button>
+      </div>
+
+      <p id="quiz-result" style="margin-top:1.5rem; font-family: monospace;"></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>When intuition fails, logic decides. | Made by Adhi</p>
+  </footer>
+
+  <script>
+    const paradoxes = document.querySelectorAll(".paradox");
+    const quizSection = document.getElementById("quiz-section");
+    let openedCount = 0;
+
+    // 1. Box Highlight Logic
+    document.querySelectorAll("section").forEach(box => {
+      box.addEventListener("click", function(e) {
+        document.querySelectorAll("section").forEach(b => b.classList.remove("selected-box"));
+        this.classList.add("selected-box");
+      });
+    });
+
+    // 2. Read More & Unlock Quiz
+    document.querySelectorAll(".read-more").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevents highlight trigger when clicking button
+        const parent = btn.parentElement;
+        
+        if (parent.dataset.opened === "false") {
+          parent.dataset.opened = "true";
+          openedCount++;
+        }
+        
+        parent.classList.toggle("open");
+        btn.innerHTML = parent.classList.contains("open") ? "Read less ↑" : "Read more →";
+
+        // Check if all are opened
+        if (openedCount === paradoxes.length) {
+          quizSection.style.display = "block";
+          setTimeout(() => quizSection.scrollIntoView({ behavior: "smooth" }), 300);
+        }
+      });
+    });
+
+    // 3. Quiz Logic + Meltdown
+    document.querySelectorAll(".quiz-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const result = document.getElementById("quiz-result");
+        document.querySelectorAll(".quiz-btn").forEach(b => b.disabled = true);
+
+        if (btn.dataset.answer === "1/3") {
+          result.innerHTML = "ACCESS GRANTED. The probability is indeed 1/3 due to the sample space {BB, BG, GB}.";
+          result.style.color = "var(--primary-cyan)";
+        } else {
+          // START MELTDOWN
+          result.innerHTML = "LOGIC BREACH DETECTED. SYSTEM OVERHEATING... SHUTTING DOWN.";
+          result.style.color = "#ff0000";
+          document.body.classList.add("system-failure");
+
+          let flicker = setInterval(() => {
+            document.body.style.opacity = (document.body.style.opacity == "0") ? "1" : "0";
+          }, 40);
+
+          setTimeout(() => {
+            clearInterval(flicker);
+            window.location.href = "science.html";
+          }, 2000);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
