@@ -3,93 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Games | Under Construction</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <title>Games | Adhi's Corner</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .construction-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 60vh;
-      text-align: center;
-    }
-
-    /* Animated Loading Bar */
-    .loading-bar-warp {
-      width: 300px;
-      height: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid var(--primary-cyan);
-      border-radius: 10px;
-      margin: 20px 0;
-      overflow: hidden;
-      box-shadow: var(--glow);
-    }
-
-    .loading-progress {
-      width: 0%;
-      height: 100%;
-      background: var(--primary-cyan);
-      animation: load-up 3s ease-in-out infinite;
-    }
-
-    @keyframes load-up {
-      0% { width: 0%; }
-      50% { width: 70%; }
-      100% { width: 100%; }
-    }
-
-    .status-text {
-      font-family: 'Nunito', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--primary-cyan);
-      animation: blink 1.5s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-  </style>
 </head>
-<body class="games-page"> <header>
-    <h1>Gamer Dashboard</h1>
-  </header>
+<body class="games-page">
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="drawings.html">Drawings</a>
-    <a href="space.html">Space</a>
-    <a href="science.html">Science</a>
-    <a href="anime.html">Anime</a>
-    <a href="games.html">Games</a>
-  </nav>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="drawings.html">Drawings</a>
+  <a href="space.html">Space</a>
+  <a href="science.html">Science</a>
+  <a href="anime.html">Anime</a>
+  <a href="games.html" class="active">Games</a>
+</nav>
 
-  <main class="container">
-    <div class="construction-container">
-      <h2 class="status-text">System Loading...</h2>
-      
-      <div class="loading-bar-warp">
-        <div class="loading-progress"></div>
+<header>
+  <h1>Games I Built 🎮</h1>
+  <p>Browser games coded from scratch. Click any card to play.</p>
+</header>
+
+<main class="container">
+
+  <div class="grid-2">
+
+    <!-- Imposter -->
+    <div class="card reveal" style="padding:0; overflow:hidden;">
+      <span class="dev-badge">Built by Adhi</span>
+      <div class="game-preview">
+        <iframe src="https://adhithyan1306.github.io/imposter_v1/" title="Imposter Game" loading="lazy"></iframe>
+        <div class="preview-overlay" onclick="window.open('https://adhithyan1306.github.io/imposter_v1/','_blank')">
+          <span class="play-hint">▶ Open Game</span>
+        </div>
       </div>
-
-      <p style="color: var(--text-gray); max-width: 500px;">
-        Leveling up the Games Realm. <br> 
-        <strong>Adhi</strong> is currently gathering information populate this page. 
-      </p>
-
-      <div style="margin-top: 30px;">
-        <span class="tag">ESTIMATED COMPLETION: TOMORROW</span>
+      <div style="padding:1.6rem;">
+        <h2 style="margin-bottom:0.5rem;">Imposter v1</h2>
+        <p style="margin-bottom:1.2rem; font-size:0.92rem;">
+          A social deduction game where roles are assigned and trust is a trap.
+          Figure out who the imposter is — before they figure out you.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.3rem;">
+          <span class="tag">Multiplayer</span>
+          <span class="tag">Social Deduction</span>
+          <span class="tag">Strategy</span>
+        </div>
+        <a href="https://adhithyan1306.github.io/imposter_v1/" target="_blank" class="btn btn-solid">Play Now</a>
       </div>
     </div>
-  </main>
 
-  <footer>
-    <p>Game on! | Made by Adhi</p>
-  </footer>
+    <!-- Color Fakeout -->
+    <div class="card reveal" style="padding:0; overflow:hidden; transition-delay:0.1s">
+      <span class="dev-badge">Built by Adhi</span>
+      <div class="game-preview">
+        <iframe src="https://adhithyan1306.github.io/color-fakeout-game/" title="Color Fakeout" loading="lazy"></iframe>
+        <div class="preview-overlay" onclick="window.open('https://adhithyan1306.github.io/color-fakeout-game/','_blank')">
+          <span class="play-hint">▶ Open Game</span>
+        </div>
+      </div>
+      <div style="padding:1.6rem;">
+        <h2 style="margin-bottom:0.5rem;">Color Fakeout</h2>
+        <p style="margin-bottom:1.2rem; font-size:0.92rem;">
+          Your eyes will lie to you. Pick the color that matches the <em>word</em>,
+          not the ink it's written in. Fast-paced, brain-twisting, and surprisingly difficult.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.3rem;">
+          <span class="tag">Single Player</span>
+          <span class="tag">Reaction</span>
+          <span class="tag">Brain Teaser</span>
+        </div>
+        <a href="https://adhithyan1306.github.io/color-fakeout-game/" target="_blank" class="btn btn-solid">Play Now</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- More coming -->
+  <div class="card reveal" style="text-align:center; margin-top:1.5rem; transition-delay:0.2s; border-style:dashed; opacity:0.7;">
+    <h3>More on the way...</h3>
+    <p style="margin-top:0.4rem; font-size:0.9rem;">Building more games during the break. Stay tuned.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>Game on! | Made by Adhi</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
